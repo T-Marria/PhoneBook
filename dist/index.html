@@ -2,8 +2,31 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <title>Телефонная книга</title>
+
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <script src="main.js"></script>
+        <button class="btn-open" id="btn-open">Add contact</button>
+        <dialog id="modal">
+            <h1>Add contact</h1>
+            <div>
+                <label for="Name">Name</label>
+                <input id="Name" type="text" name="Name" placeholder="Enter name">
+            </div>
+            <div>
+                <label for="Phone">Phone</label>
+                <input id="Phone" type="text" name="Phone" placeholder="Enter phone number">
+            </div>
+            <div>
+                <input id="Favorite" type="checkbox" name="Favorite" value="Favorite">
+                <label for="Favorite">Favorite</label>
+            </div>
+
+            <button class="??" id="??">Save</button>
+            <button class="btn-close" id="btn-close">Cancel</button>
+        </dialog>
+
+        <script src="../src/index.js"></script>
     </body>
 </html>

@@ -1,0 +1,35 @@
+dialog::backdrop {
+    background-color: rgba(0 0 0 / .3);
+}
+
+dialog {
+    width: 20%;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 0 0 .6em rgb( 0 0 0 / .3)
+}
+
+.btn-open {
+    position:absolute;
+    margin: 25% auto 0;
+    left:45%;
+    background-color: #8e2ddd;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 1.5em;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer
+}
+
+.btn-close {
+    background-color: #ff0099;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: .8em;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer
+}
