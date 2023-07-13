@@ -36,12 +36,12 @@ function Contact(name, phone, isFavorite = false) {
 
 const contactList = {
 list: [],
-SortByName() {
-    this.list.sort((a, b) => a.name > b.name ? 1 : -1);
+SortList() {
+    this.list.sort((a, b) => ((!a.isFavorite && b.isFavorite) || ((a.isFavorite == b.isFavorite) && (a.name > b.name))) ? 1 : -1);
 },
 AddContact(newContact) {
     this.list.push(newContact);
-    this.SortByName();
+    this.SortList();
 },
 PrintContactList() {
     document.querySelector('.content').innerHTML = `<table class="contactList"></table>`
@@ -79,6 +79,7 @@ PrintContactList() {
 contactList.AddContact(new Contact("Marie", "89608091515", true));
 contactList.AddContact(new Contact("Leshenka", "89878171323", true));
 contactList.AddContact(new Contact("Alice", "89277125279"));
+contactList.AddContact(new Contact("Sam", "89878171320", true));
 
 console.log(contactList.list);
 
