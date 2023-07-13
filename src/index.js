@@ -10,7 +10,6 @@ btnClose.onclick = () => {
     modal.close()
 }
 
-
 function Contact(name, phone, isFavorite = false) {
     this.name = name;
     this.phone = phone;
@@ -35,3 +34,31 @@ contactList.AddContact(new Contact("Alice", "89277125279"))
 
 console.log(contactList.list)
 
+document.querySelector('.content').innerHTML = `<table class="contactList"></table>`
+for (let i = 0; i < contactList.list.length; i++) {
+    let row1 = document.createElement('tr');
+    let row2 = document.createElement('tr');
+    row1.innerHTML = `
+    <td rowspan="2">
+        <img src="../dist/contact.svg" alt="contact img width="40" height="40"">
+    </td>
+    <td>
+        ${contactList.list[i].name}
+    </td>
+    <td>
+        <button>Delete</button>
+    </td>
+    `;
+    row2.innerHTML = `
+    <td>
+        ${contactList.list[i].phone}
+    </td>
+    <td>
+        <input id="Favorite" type="checkbox" name="Favorite" value="Favorite">
+        <label for="Favorite">Fav</label>
+    </td>
+    `;
+
+    document.querySelector('.contactList').appendChild(row1);
+    document.querySelector('.contactList').appendChild(row2);
+}
