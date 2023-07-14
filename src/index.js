@@ -1,9 +1,69 @@
+function Contact(name, phone, isFavorite = false) {
+    this.name = name;
+    this.phone = phone;
+    this.isFavorite = isFavorite;
+}
+
+const contactList = {
+    list: [],
+    SortList() {
+        this.list.sort((a, b) => ((!a.isFavorite && b.isFavorite) || ((a.isFavorite == b.isFavorite) && (a.name > b.name))) ? 1 : -1);
+    },
+    AddContact(newContact) {
+        this.list.push(newContact);
+        this.SortList();
+    },
+    DeleteByPosition(position) {
+        this.list = this.list.filter((contact, ind) => ind !== position);
+    },
+    PrintContactList() {
+        document.querySelector('.content').innerHTML = `<table class="contactList"></table>`
+        for (let i = 0; i < contactList.list.length; i++) {
+            let row1 = document.createElement('tr');
+            let row2 = document.createElement('tr');
+            row1.innerHTML = `
+            <td rowspan="2">
+                <img src="../dist/contact.svg" alt="contact img width="40" height="40"">
+            </td>
+            <td>
+                ${contactList.list[i].name}
+            </td>
+            <td>
+                <button class="btn-delete">Delete</button>
+            </td>
+            `;
+            row2.innerHTML = `
+            <td>
+                ${contactList.list[i].phone}
+            </td>
+            <td>
+                <input id="isFavorite-${i}" type="checkbox">
+                <label for="isFavorite-${i}">Fav</label>
+            </td>
+            `;
+
+            document.querySelector('.contactList').appendChild(row1);
+            document.querySelector('.contactList').appendChild(row2);
+        }
+        console.log(contactList.list);
+    }
+};
+
+contactList.AddContact(new Contact("Marie", "89608091515", true));
+contactList.AddContact(new Contact("Leshenka", "89878171323", true));
+contactList.AddContact(new Contact("Alice", "89277125279"));
+contactList.AddContact(new Contact("Sam", "89878171320", true));
+
+contactList.PrintContactList()
+
+
 // TODO: заменить все "onclick" на "AddEventListener"
 const btnOpen = document.querySelector("#btn-open");
 const btnClose = document.querySelector("#btn-close")
 const modal = document.querySelector("#modal");
 const btnSave = document.querySelector("#btn-save");
-
+let btnsDelete = document.querySelectorAll(".btn-delete");
+console.log(btnsDelete);
 
 btnOpen.onclick = () => {
     modal.showModal()
@@ -21,64 +81,7 @@ function onClickSave() {
     let newIsFavorite = document.querySelector("#isFavorite").checked;
 
     contactList.AddContact(new Contact(newName, newPhone, newIsFavorite));
+    btnsDelete = document.querySelectorAll(".btn-delete"); // ! Пропускает первое добавление контакта
+    console.log(btnsDelete);
     contactList.PrintContactList();
 }
-
-
-
-function Contact(name, phone, isFavorite = false) {
-    this.name = name;
-    this.phone = phone;
-    this.isFavorite = isFavorite;
-}
-
-const contactList = {
-list: [],
-SortList() {
-    this.list.sort((a, b) => ((!a.isFavorite && b.isFavorite) || ((a.isFavorite == b.isFavorite) && (a.name > b.name))) ? 1 : -1);
-},
-AddContact(newContact) {
-    this.list.push(newContact);
-    this.SortList();
-},
-PrintContactList() {
-    document.querySelector('.content').innerHTML = `<table class="contactList"></table>`
-    for (let i = 0; i < contactList.list.length; i++) {
-        let row1 = document.createElement('tr');
-        let row2 = document.createElement('tr');
-        row1.innerHTML = `
-        <td rowspan="2">
-            <img src="../dist/contact.svg" alt="contact img width="40" height="40"">
-        </td>
-        <td>
-            ${contactList.list[i].name}
-        </td>
-        <td>
-            <button>Delete</button>
-        </td>
-        `;
-        row2.innerHTML = `
-        <td>
-            ${contactList.list[i].phone}
-        </td>
-        <td>
-            <input id="isFavorite-${i}" type="checkbox" name="Favorite" value="Favorite">
-            <label for="Favorite">Fav</label>
-        </td>
-        `;
-
-        document.querySelector('.contactList').appendChild(row1);
-        document.querySelector('.contactList').appendChild(row2);
-    }
-}
-//TODO: DeleteContact()
-};
-
-contactList.AddContact(new Contact("Marie", "89608091515", true));
-contactList.AddContact(new Contact("Leshenka", "89878171323", true));
-contactList.AddContact(new Contact("Alice", "89277125279"));
-contactList.AddContact(new Contact("Sam", "89878171320", true));
-
-console.log(contactList.list);
-
-contactList.PrintContactList()
