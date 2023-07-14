@@ -1,7 +1,9 @@
+// TODO: заменить все "onclick" на "AddEventListener"
 const btnOpen = document.querySelector("#btn-open");
 const btnClose = document.querySelector("#btn-close")
 const modal = document.querySelector("#modal");
 const btnSave = document.querySelector("#btn-save");
+
 
 btnOpen.onclick = () => {
     modal.showModal()
@@ -16,13 +18,9 @@ btnSave.onclick = onClickSave;
 function onClickSave() {
     let newName = document.querySelector("#Name").value;
     let newPhone = document.querySelector("#Phone").value;
-    let newIsFavorite = document.querySelector("#Favorite");
+    let newIsFavorite = document.querySelector("#isFavorite").checked;
 
-    console.log(newName, newPhone);
-    // TODO: checking checkbox value
-
-    contactList.AddContact(new Contact(newName, newPhone));
-    console.log(contactList.list);
+    contactList.AddContact(new Contact(newName, newPhone, newIsFavorite));
     contactList.PrintContactList();
 }
 
@@ -64,7 +62,7 @@ PrintContactList() {
             ${contactList.list[i].phone}
         </td>
         <td>
-            <input id="Favorite" type="checkbox" name="Favorite" value="Favorite">
+            <input id="isFavorite-${i}" type="checkbox" name="Favorite" value="Favorite">
             <label for="Favorite">Fav</label>
         </td>
         `;
