@@ -41,25 +41,28 @@ const contactList = {
             let row1 = document.createElement('tr');
             let row2 = document.createElement('tr');
             row1.innerHTML = `
-            <td rowspan="2">
-                <img src="../dist/contact.svg" alt="contact img width="40" height="40"">
-            </td>
-            <td>
-                ${contactList.list[i].name}
-            </td>
-            <td>
-                <button class="btn-delete">Delete</button>
-            </td>
-            `;
+                <td rowspan="2">
+                    <img src="../dist/contact.svg" alt="contact img width="40" height="40"">
+                </td>
+                <td>
+                    ${contactList.list[i].name}
+                </td>
+                <td>
+                    <button class="btn-delete">Delete</button>
+                </td>
+                `;
+
+            let isChecked;
+            contactList.list[i].isFavorite ? isChecked = "checked" : isChecked = ""
             row2.innerHTML = `
-            <td>
-                ${contactList.list[i].phone}
-            </td>
-            <td>
-                <input class="isFavorite" id="isFavorite-${i}" type="checkbox">
-                <label for="isFavorite-${i}">Fav</label>
-            </td>
-            `;
+                <td>
+                    ${contactList.list[i].phone}
+                </td>
+                <td>
+                    <input class="isFavorite" id="isFavorite-${i}" type="checkbox" ${isChecked}>
+                    <label for="isFavorite-${i}">Fav</label>
+                </td>
+                `;
 
             document.querySelector('.contactList').appendChild(row1);
             document.querySelector('.contactList').appendChild(row2);
@@ -73,6 +76,21 @@ const contactList = {
 
         for (let i = 0; i < contactList.list.length; i++) {
             btnsDelete[i].addEventListener("click", () => contactList.DeleteByPosition(i));
+        }
+
+        for (let i = 0; i < contactList.list.length; i++) {
+            checkFavs[i].addEventListener("change", function(event) {
+                if (event.target.checked) {
+                    contactList.list[i].isFavorite = true;
+                    console.log(`${contactList.list[i].name} is in favorites now`);
+                }
+                else {
+                    contactList.list[i].isFavorite = false;
+                    console.log(`${contactList.list[i].name} removed from favorites`);
+                }
+                contactList.SortList();
+                contactList.PrintContactList();
+            }); 
         }
     }
 };
