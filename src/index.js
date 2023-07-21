@@ -7,16 +7,9 @@ let btnsDelete = document.querySelectorAll(".btn-delete");
 let checkFavs = document.querySelectorAll(".isFavorite");
 const inputSearch = document.querySelector("#input-search");
 
-btnOpen.onclick = () => {
-    modal.showModal()
-}
-
-btnClose.onclick = () => {
-    modal.close()
-}
-
-btnSave.onclick = onClickSave;
-
+btnOpen.addEventListener("click", () => modal.showModal());
+btnClose.addEventListener("click", () => modal.close());
+btnSave.addEventListener("click", onClickSave);
 inputSearch.addEventListener("keyup", SearchContact);
 
 function Contact(name, phone, isFavorite = false) {
@@ -76,8 +69,6 @@ const contactList = {
 
         btnsDelete = document.querySelectorAll(".btn-delete");
         checkFavs = document.querySelectorAll(".isFavorite");
-        console.log(btnsDelete);
-        console.log(checkFavs);
 
         for (let i = 0; i < contactList.list.length; i++) {
             btnsDelete[i].addEventListener("click", () => contactList.DeleteByPosition(i));
@@ -104,7 +95,6 @@ contactList.AddContact(new Contact("Marie", "89608091515", true));
 contactList.AddContact(new Contact("Leshenka", "89878171323", true));
 contactList.AddContact(new Contact("Alice", "89277125279"));
 contactList.AddContact(new Contact("Sam", "89878171320", true));
-
 contactList.Print()
 
 
