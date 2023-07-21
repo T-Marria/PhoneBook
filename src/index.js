@@ -1,3 +1,21 @@
+// TODO: заменить все "onclick" на "AddEventListener"
+const btnOpen = document.querySelector("#btn-open");
+const btnClose = document.querySelector("#btn-close")
+const modal = document.querySelector("#modal");
+const btnSave = document.querySelector("#btn-save");
+let btnsDelete = document.querySelectorAll(".btn-delete");
+let checkFavs = document.querySelectorAll(".isFavorite");
+
+btnOpen.onclick = () => {
+    modal.showModal()
+}
+
+btnClose.onclick = () => {
+    modal.close()
+}
+
+btnSave.onclick = onClickSave;
+
 function Contact(name, phone, isFavorite = false) {
     this.name = name;
     this.phone = phone;
@@ -15,6 +33,7 @@ const contactList = {
     },
     DeleteByPosition(position) {
         this.list = this.list.filter((contact, ind) => ind !== position);
+        contactList.PrintContactList();
     },
     PrintContactList() {
         document.querySelector('.content').innerHTML = `<table class="contactList"></table>`
@@ -37,7 +56,7 @@ const contactList = {
                 ${contactList.list[i].phone}
             </td>
             <td>
-                <input id="isFavorite-${i}" type="checkbox">
+                <input class="isFavorite" id="isFavorite-${i}" type="checkbox">
                 <label for="isFavorite-${i}">Fav</label>
             </td>
             `;
@@ -46,6 +65,15 @@ const contactList = {
             document.querySelector('.contactList').appendChild(row2);
         }
         console.log(contactList.list);
+
+        btnsDelete = document.querySelectorAll(".btn-delete");
+        checkFavs = document.querySelectorAll(".isFavorite");
+        console.log(btnsDelete);
+        console.log(checkFavs);
+
+        for (let i = 0; i < contactList.list.length; i++) {
+            btnsDelete[i].addEventListener("click", () => contactList.DeleteByPosition(i));
+        }
     }
 };
 
@@ -57,31 +85,13 @@ contactList.AddContact(new Contact("Sam", "89878171320", true));
 contactList.PrintContactList()
 
 
-// TODO: заменить все "onclick" на "AddEventListener"
-const btnOpen = document.querySelector("#btn-open");
-const btnClose = document.querySelector("#btn-close")
-const modal = document.querySelector("#modal");
-const btnSave = document.querySelector("#btn-save");
-let btnsDelete = document.querySelectorAll(".btn-delete");
-console.log(btnsDelete);
-
-btnOpen.onclick = () => {
-    modal.showModal()
-}
-
-btnClose.onclick = () => {
-    modal.close()
-}
-
-btnSave.onclick = onClickSave;
-
 function onClickSave() {
     let newName = document.querySelector("#Name").value;
     let newPhone = document.querySelector("#Phone").value;
     let newIsFavorite = document.querySelector("#isFavorite").checked;
 
     contactList.AddContact(new Contact(newName, newPhone, newIsFavorite));
-    btnsDelete = document.querySelectorAll(".btn-delete"); // ! Пропускает первое добавление контакта
-    console.log(btnsDelete);
     contactList.PrintContactList();
+
+    modal.close();
 }

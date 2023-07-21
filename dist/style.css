@@ -1,4 +1,4 @@
-dialog::backdrop {
+/* dialog::backdrop {
     background-color: rgba(0 0 0 / .3);
 }
 
@@ -10,9 +10,6 @@ dialog {
 }
 
 .btn-open {
-    position:absolute;
-    margin: 25% auto 0;
-    left:45%;
     background-color: #8f47c9;
     color: #fff;
     border: none;
@@ -32,4 +29,4 @@ dialog {
     font-size: 13px;
     font-weight: bold;
     cursor: pointer
-}
+} */
