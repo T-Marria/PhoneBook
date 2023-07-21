@@ -5,6 +5,7 @@ const modal = document.querySelector("#modal");
 const btnSave = document.querySelector("#btn-save");
 let btnsDelete = document.querySelectorAll(".btn-delete");
 let checkFavs = document.querySelectorAll(".isFavorite");
+const inputSearch = document.querySelector("#input-search");
 
 btnOpen.onclick = () => {
     modal.showModal()
@@ -15,6 +16,8 @@ btnClose.onclick = () => {
 }
 
 btnSave.onclick = onClickSave;
+
+inputSearch.addEventListener("keyup", SearchContact);
 
 function Contact(name, phone, isFavorite = false) {
     this.name = name;
@@ -33,13 +36,15 @@ const contactList = {
     },
     DeleteByPosition(position) {
         this.list = this.list.filter((contact, ind) => ind !== position);
-        contactList.PrintContactList();
+        contactList.Print();
     },
-    PrintContactList() {
+    Print() {
         document.querySelector('.content').innerHTML = `<table class="contactList"></table>`
         for (let i = 0; i < contactList.list.length; i++) {
             let row1 = document.createElement('tr');
             let row2 = document.createElement('tr');
+            row1.className = `contact-${i}`;
+            row2.className = `contact-${i}`;
             row1.innerHTML = `
                 <td rowspan="2">
                     <img src="../dist/contact.svg" alt="contact img width="40" height="40"">
@@ -89,7 +94,7 @@ const contactList = {
                     console.log(`${contactList.list[i].name} removed from favorites`);
                 }
                 contactList.SortList();
-                contactList.PrintContactList();
+                contactList.Print();
             }); 
         }
     }
@@ -100,7 +105,7 @@ contactList.AddContact(new Contact("Leshenka", "89878171323", true));
 contactList.AddContact(new Contact("Alice", "89277125279"));
 contactList.AddContact(new Contact("Sam", "89878171320", true));
 
-contactList.PrintContactList()
+contactList.Print()
 
 
 function onClickSave() {
@@ -109,7 +114,24 @@ function onClickSave() {
     let newIsFavorite = document.querySelector("#isFavorite").checked;
 
     contactList.AddContact(new Contact(newName, newPhone, newIsFavorite));
-    contactList.PrintContactList();
+    contactList.Print();
 
     modal.close();
+}
+
+function SearchContact() {
+    let inputValue = inputSearch.value.toUpperCase();
+
+    for (let i = 0; i < contactList.list.length; i++) {
+        let contact = document.querySelectorAll(`.contact-${i}`)
+        if (contactList.list[i].name.toUpperCase().indexOf(inputValue) == 0) {
+            contact[0].style.display = "";
+            contact[1].style.display = "";
+        }
+        else {
+
+            contact[0].style.display = "none";
+            contact[1].style.display = "none";
+        }
+    }
 }
