@@ -1,15 +1,41 @@
-/* dialog::backdrop {
-    background-color: rgba(0 0 0 / .3);
+/* * {
+    padding: 0;
+    margin: 0;
+} */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+dialog::backdrop {
+    background-color: #00000067;
 }
 
 dialog {
-    width: 20%;
     border: none;
-    border-radius: 14px;
-    box-shadow: 0 0 0 .6em rgb( 0 0 0 / .3)
+    border-radius: 6px;
+    /* box-shadow: 0 0 0 .6em rgb( 0 0 0 / .3) */
 }
 
-.btn-open {
+.input-search {
+    border-radius: 10px;
+}
+
+.add-contact-data {
+    border-radius: 4px;
+}
+
+.contact-name {
+    
+}
+
+.contact-phone {
+    font-size: 14px;
+    color: #2c2c2c;
+}
+
+/* .btn-open {
     background-color: #8f47c9;
     color: #fff;
     border: none;
@@ -21,7 +47,7 @@ dialog {
 }
 
 .btn-close {
-    background-color: #ff0099;
+    background-color: #d71d33;
     color: #fff;
     border: none;
     border-radius: 10px;

@@ -5,28 +5,37 @@
         <title>Телефонная книга</title>
 
         <link rel="stylesheet" href="style.css">
-    </head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <body>
-        <input id="input-search" type="search" placeholder="Search...">
+        <div>
+            <!-- <img src="tablet_pixel_icon_123710.svg" alt="альтернативный текст" width="40" height="40"> -->
+            <input class="input-search" type="search" placeholder="Search...">
+        </div>
         <div class="content"></div>
-        <button class="btn-open" id="btn-open">Add contact</button>
+        <div>
+            <button class="btn-open" id="btn-open">Add contact</button>
+        </div>
         <dialog id="modal">
             <h1>Add contact</h1>
             <div>
                 <label for="Name">Name</label>
-                <input id="Name" type="text" placeholder="Enter name">
+                <input class="add-contact-data" id="Name" type="text" placeholder="Enter name">
             </div>
             <div>
                 <label for="Phone">Phone</label>
-                <input id="Phone" type="text" placeholder="Enter phone number">
+                <input class="add-contact-data" id="Phone" type="text" placeholder="Enter phone number">
             </div>
             <div>
                 <input id="isFavorite" type="checkbox">
                 <label for="isFavorite">Favorite</label>
             </div>
-
-            <button class="btn-save" id="btn-save">Save</button>
-            <button class="btn-close" id="btn-close">Cancel</button>
+            <div>
+                <button class="btn-save" id="btn-save">Save</button>
+                <button class="btn-close" id="btn-close">Cancel</button>
+            </div>
+            
         </dialog>
 
         <script src="../src/index.js"></script>

@@ -1,11 +1,10 @@
-// TODO: заменить все "onclick" на "AddEventListener"
 const btnOpen = document.querySelector("#btn-open");
 const btnClose = document.querySelector("#btn-close")
 const modal = document.querySelector("#modal");
 const btnSave = document.querySelector("#btn-save");
 let btnsDelete = document.querySelectorAll(".btn-delete");
 let checkFavs = document.querySelectorAll(".isFavorite");
-const inputSearch = document.querySelector("#input-search");
+const inputSearch = document.querySelector(".input-search");
 
 btnOpen.addEventListener("click", () => modal.showModal());
 btnClose.addEventListener("click", () => modal.close());
@@ -40,9 +39,9 @@ const contactList = {
             row2.className = `contact-${i}`;
             row1.innerHTML = `
                 <td rowspan="2">
-                    <img src="../dist/contact.svg" alt="contact img width="40" height="40"">
+                    <img src="../dist/images/contact.svg" alt="contact img" width="40" height="40">
                 </td>
-                <td>
+                <td class="contact-name">
                     ${contactList.list[i].name}
                 </td>
                 <td>
@@ -53,7 +52,7 @@ const contactList = {
             let isChecked;
             contactList.list[i].isFavorite ? isChecked = "checked" : isChecked = ""
             row2.innerHTML = `
-                <td>
+                <td class="contact-phone">
                     ${contactList.list[i].phone}
                 </td>
                 <td>
